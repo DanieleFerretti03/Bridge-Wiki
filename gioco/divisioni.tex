@@ -1,0 +1,32 @@
+\section{Divisioni delle carte}
+
+Con divisioni intendiamo il numero di carte presenti tra due mani.
+Sappiamo ottenere il numero totale di carte tra due mani conoscendo il numero di carte nelle altre due.
+
+Es. Una persona gioca in difesa e ha 5 carte di \C, vede al morto che ci sono altre 5 carte di \C.
+Sapendo che in totale le carte di cuori sono 13, sappiamo che tra le due mani il numero di carte rimaste è 3.
+
+\paragraph{Come mi aiuta sapere questa cosa?}
+Per comprendere meglio i meccanismi della probabilità sul gioco della carta.
+
+\paragraph{L'aforisma:}
+Se il numero è pari, la divisione più più probabile è $\frac{n}{2}$.
+Es. Mancando 8 carte è più probabile siano divise 4-4.
+
+Se il numero è dispari la cosa più probabile è avere i numeri vicini alla metà separati di un'unità.
+Es. Mancando 5 carte è più probabile la dizione 3-2 o 2-3.
+
+\paragraph{Attenzione alla dichiarazione:}
+Se una persona dichiara di avere un certo numero di carte, è evidente che dovremmo aggiustare i nostri ragionamenti di conseguenza.
+Se Nord dichiara di avere 6 carte di cuori, e tra sud-nord mancano 8 carte, la divisione "certa" sarà 6-2 e non la statisticamente probabile 4-4.
+
+\paragraph{Come posso calcolare queste possibilità?}
+Nota, al tavolo da gioco non serve che ti metti a fare un conto matematico.
+Tuttavia, per avere un numero approssimativo potresti fare così:
+
+Dove tot indica il numero di carte mancanti, e m1+m2=tot.
+M1 e m2 indicano le distribuzioni possibili.
+$\frac{tot!}{m1!*m2!}$
+
+Il numero che esce fuori va comparato con altre distribuzioni, il numero più alto è quello più probabile.
+Nota '!' indica l'operazione di fattoriale.

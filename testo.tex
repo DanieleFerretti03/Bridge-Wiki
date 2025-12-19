@@ -1,0 +1,39 @@
+\documentclass[UTF8]{article}
+
+\usepackage{bridge}
+\bridgeset{color=two}
+
+\usepackage{emotion}
+\emotionsetup{Twemoji Mozilla}
+
+\usepackage[a4paper]{geometry} 
+
+\usepackage{pgfplots}
+\usepackage{tikz} % Per centrare facilmente
+\usepackage{lmodern} % Font migliore
+\usepackage{anyfontsize} % Per scalare liberamente la grandezza del testo
+\usepackage{hyperref}
+
+\begin{document}
+
+
+\newcommand{\p}{\emotion{♠️}}
+\newcommand{\C}{\emotion{♥️}}
+\newcommand{\q}{\emotion{♦️}}
+\newcommand{\f}{\emotion{♣️}}
+
+\title{
+  \huge Il semplice corso di Bridge\\  
+  \large Un corso per tutti i neofiti ed esperti
+  }
+\author{Daniele Ferretti}
+\date{}
+\maketitle
+\tableofcontents
+
+\newpage
+
+\input{intro/I.tex}
+\input{licita/II.tex}
+\input{gioco/III.tex}
+\end{document}

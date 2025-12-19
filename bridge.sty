@@ -1,0 +1,220 @@
+%%
+%% This is file `bridge.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% bridge.dtx  (with options: `package')
+%% ----------------------------------------------------------------
+%% bridge --- Typesetting bridge-related stuff
+%% E-mail: anntzer.lee(at)gmail.com
+%% Released under the LaTeX Project Public License v1.3c or later
+%% See http://www.latex-project.org/lppl.txt
+%% ----------------------------------------------------------------
+%% 
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{bridge}[2012/03/18 v0.1 Typesetting bridge-related stuff]
+\RequirePackage{booktabs} % for auction environment
+\RequirePackage{environ} % for \collect@body
+\RequirePackage{etoolbox} % for \ifnumequal
+\RequirePackage{pgfkeys}
+\RequirePackage{pgfopts}
+\RequirePackage{multicol}
+\RequirePackage[x11names]{xcolor}
+\RequirePackage{xstring} % for \StrBefore/Between/Behind
+
+\def\bridgeset#1{\pgfqkeys{/bridge}{#1}}
+\bridgeset{color/.is choice}
+\DeclareSymbolFont{extraup}{U}{zavm}{m}{n}
+\DeclareMathSymbol{\@varheart}{\mathalpha}{extraup}{86}
+\DeclareMathSymbol{\@vardiamond}{\mathalpha}{extraup}{87}
+\bridgeset{color/bw/.code={%
+  \def\spade{\textcolor{black}{\ensuremath{\spadesuit}}}%
+  \def\heart{\textcolor{black}{\ensuremath{\heartsuit}}}%
+  \def\diamond{\textcolor{black}{\ensuremath{\diamondsuit}}}%
+  \def\club{\textcolor{black}{\ensuremath{\clubsuit}}}}}
+\bridgeset{color/two/.code={%
+  \def\spade{\textcolor{black}{\ensuremath{\spadesuit}}}%
+  \def\heart{\textcolor{red}{\ensuremath{\@varheart}}}%
+  \def\diamond{\textcolor{red}{\ensuremath{\@vardiamond}}}%
+  \def\club{\textcolor{black}{\ensuremath{\clubsuit}}}}}
+\bridgeset{color/four/.code={%
+  \def\spade{\textcolor{blue}{\ensuremath{\spadesuit}}}%
+  \def\heart{\textcolor{red}{\ensuremath{\@varheart}}}%
+  \def\diamond{\textcolor{orange}{\ensuremath{\@vardiamond}}}%
+  \def\club{\textcolor{Green2}{\ensuremath{\clubsuit}}}}}
+\bridgeset{color=bw}
+\newif\ifshownames
+\bridgeset{shownames/.is if=shownames}
+\bridgeset{shownames=true}
+\newif\ifframedauction
+\bridgeset{framedauction/.is if=framedauction}
+\bridgeset{framedauction=true}
+\newif\ifvertauction
+\bridgeset{vertauction/.is if=vertauction}
+\bridgeset{vertauction=true}
+
+\newcommand*{\@decorateauction}[1]{%
+    \ifframedauction\framebox{#1}\else#1\fi%
+}
+
+\ProcessPgfOptions*
+
+\newcommand*{\@hand}[4]{%
+    \vtop{%
+        \hbox{\strut\spade\enspace#1}%
+        \hbox{\strut\heart\enspace#2}%
+        \hbox{\strut\diamond\enspace#3}%
+        \hbox{\strut\club\enspace#4}%
+    }%
+}%
+
+\newcommand*{\hand}[1]{%
+    \@hand{\StrBefore{#1}{,}}{\StrBetween[1,2]{#1}{,}{,}}%
+    {\StrBetween[2,3]{#1}{,}{,}}{\StrBehind[3]{#1}{,}}%
+}%
+
+\newcommand*{\@extrainfo}[1]{%
+    \vtop{\raggedright\parindent=0pt\hsize=3\baselineskip #1}
+}%
+
+\newcommand*{\@tablebox}{%
+    \hbox{%
+        \vrule
+        \vbox to 3\baselineskip{%
+            \hrule\vfill%
+            \hbox to 3\baselineskip{\hfil\ifshownames N\fi\hfil}%
+            \hbox to 3\baselineskip{\hskip.5em\ifshownames W\fi\hfil%
+                                              \ifshownames E\fi\hskip.5em}%
+            \hbox to 3\baselineskip{\hfil\ifshownames S\fi\hfil}%
+            \vfill\hrule%
+        }\vrule%
+    }%
+}%
+
+\newcommand*{\board}[6]{%
+    \vtop{\halign{%
+        ## & ## & ## \cr
+        \@extrainfo{#1} & \hand{#3} & \@extrainfo{#2} \cr
+        $\vcenter{\hand{#6}}$ & $\vcenter{\@tablebox}$ & $\vcenter{\hand{#4}}$ \cr
+         & \hand{#5} & \cr
+    }}%
+}%
+
+\def\@suitsymbol#1#2#3\stop{%
+    #1%
+    \if#2S\spade\else%
+    \if#2H\heart\else%
+    \if#2D\diamond\else%
+    \if#2C\club\else%
+    #2%
+    \fi\fi\fi\fi%
+    #3%
+}%
+
+\newcounter{col}%
+\newbool{empty}%
+
+\def\@printauctionfour#1\stop{%
+    \renewcommand*{\do}[1]{%
+        \ifnumequal{\value{col}}{4}{\setcounter{col}{0}\\}{}%
+        \expandafter\@suitsymbol##1{}{}\stop%
+        \stepcounter{col}%
+        \ifnumequal{\value{col}}{4}{}{&}%
+    }%
+    \@decorateauction{%
+        \begin{tabular}{cccc}
+            \ifshownames%
+            \setcounter{col}{0}%
+            \@for\bidder:=\@bidders\do{%
+                \stepcounter{col}%
+                \bidder%
+                \ifnumequal{\value{col}}{4}{}{&}%
+            }%
+            \\%
+            \midrule%
+            \fi%
+            \setcounter{col}{0}%
+            \expandafter\docsvlist\expandafter{#1}
+        \end{tabular}%
+    }%
+}%
+
+\def\@printauctiontwo#1\stop{%
+    \renewcommand*{\do}[1]{%
+        \ifnumequal{\value{col}}{2}{\setcounter{col}{0}\\}{}%
+        \expandafter\@suitsymbol##1{}{}\stop%
+        \stepcounter{col}%
+        \ifnumequal{\value{col}}{2}{}{&}%
+    }%
+    \@decorateauction{%
+        \begin{tabular}{cc}
+            \ifshownames%
+            \setcounter{col}{0}%
+            \@for\bidder:=\@bidders\do{%
+                \stepcounter{col}%
+                \bidder%
+                \ifnumequal{\value{col}}{2}{}{&}%
+            }%
+            \\%
+            \midrule%
+            \fi%
+            \setcounter{col}{0}%
+            \expandafter\docsvlist\expandafter{#1}
+        \end{tabular}%
+    }%
+}%
+
+\def\@splitauctionbody#1\@alerts#2\stop{%
+    \ifvertauction%
+        \expandafter\@printauction#1\stop\\%
+        \def\@alerts{}%
+        #2%
+    \else%
+        \begin{multicols}{2}%
+        \expandafter\@printauction#1\stop\\%
+        \def\@alerts{}%
+        #2%
+        \end{multicols}%
+    \fi%
+}%
+
+\def\alerts{\noexpand\@alerts}%
+
+\def\@auction#1{%
+    \edef\body{#1}
+    \vtop{%
+        \parindent=0pt%
+        \expandafter\@splitauctionbody\body\@alerts\stop%
+    }%
+}%
+
+\NewEnviron{auction}[1][W,N,E,S]{%
+    \def\@bidders{#1}%
+    \let\@printauction\@printauctionfour
+    \@auction{\BODY}%
+}{}%
+
+\NewEnviron{auctiontwo}[1][N,S]{%
+    \def\@bidders{#1}%
+    \let\@printauction\@printauctiontwo
+    \@auction{\BODY}%
+}{}%
+%% 
+%% Copyright (C) 2012 by Antony Lee <anntzer.lee(at)gmail.com>
+%% 
+%% This work may be distributed and/or modified under the conditions of the LaTeX
+%% Project Public License (LPPL), either version 1.3c of this license or (at your
+%% option) any later version.  The latest version of this license is in the file:
+%% 
+%% http://www.latex-project.org/lppl.txt
+%% 
+%% This work is "maintained" (as per LPPL maintenance status) by Antony Lee.
+%% 
+%% This work consists of the file  bridge.dtx
+%% and the derived files           bridge.ins,
+%%                                 bridge.pdf and
+%%                                 bridge.sty.
+%% 
+%%
+%% End of file `bridge.sty'.

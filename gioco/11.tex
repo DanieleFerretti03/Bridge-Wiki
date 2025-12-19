@@ -1,0 +1,81 @@
+\section{Legge 10, 11 e 12}
+
+Questa "legge" è basata su di un principio matematico.
+È bene tenerla a mente e farvi pratica.
+Essa può essere usata sia dal compagno in difesa di chi attacca, sia dal dichiarante.
+Il momento in cui si potrà applicare è quello dell'attacco.
+
+Supponiamo che la mano giocata sia:
+
+\board{}{7\p}%
+{K52,--,--,--}%
+{AQJ,--,--,--}%
+{643,--,--,--}%
+{78910,--,--,--}
+
+Supponiamo che il contratto sia giocato da sud.
+L'attacco da parte di ovest è fatto con la sua 4 carta migliore: in questo caso il 7\p.
+
+\paragraph{Nei panni della difesa:}
+Supponiamo di essere nei panni di est, e quindi di avere AQJ\p.
+Sapendo che il nostro compagno ha attaccato con la sua quarta migliore, sottraiamo da 11 il valore ella carta di attacco.
+In questo caso quindi $11-7=4$, queste sono il numero di carte più alte del (in questo caso) 7\p nelle altre tre mani.
+
+Per rendere questo dato più utile, vedendo il morto possiamo sottrarre ulteriormente una carta più alta (in questo caso il K\p), quindi $11-4-1=3$.
+Ovvero tra la mano di est e quella di sud ci sono 3 carte più alte del 7\p.
+
+Possiamo ulteriormente raffinare questo numero, siccome est vede ovviamente le sue carte.
+In questo caso possiamo sottrarre 3 carte (AQJ\p), quindi $11-4-1-3 = 0$.
+Questo 0 rappresenta il numero di carte più alte del 7 nella mano di sud.
+Ovvero ha solo carte più basse del 7, vedendo le carte potete constatare la veridicità dell'affermazione.
+
+\paragraph{Nei panni del dichiarante:}
+Usando sempre la mano di prima.
+Sottraiamo da il numero della carte di attacco $11-7=4$.
+Raffiniamo eliminando le carte del morto $11-7-1=3$.
+Concludiamo con l'eliminare il numero di carte più alte del 7\p nella nostra mano.
+In questo caso, nessuna.
+Quindi, sappiamo che nella mano di est ci sono 3 carte più alte del 7.
+
+Nuovamente, guardate la distribuzione e confermate la veridicità dell'affermazione.
+
+\paragraph{E se non attaccasse con la 4 migliore?}
+Sicuramente non si potrebbe applicare la legge 11.
+Tuttavia, non tutto è ancora perduto!
+Attaccando con la terza migliore, si può applicare la legge del 12.
+La differenza tra le due nei conti è solo nel sostituire il numero 11 al numero 12.
+
+Facciamo un esempio pratico:
+
+\board{}{5\f}%
+{--,--,--,AQJ7}%
+{--,--,--,98}%
+{--,--,--,643}%
+{--,--,--,K1052}
+
+\begin{itemize}
+
+\item Per la difesa: $12-5-4-2=1$.
+  12 è il numero di base, 5\f è la carta di attacco,
+  4 il numero di carte più alte possedute dal nord (AQJ7\f),
+  2 il numero di carte più alte possedute da est (98\f).
+  Se si nota, sud ha solo una carta superiore al 5\f (ovvero il 6\f).
+
+\item Per il dichiarante: $12-5-4-1=2$.
+  12 è il numero di base, 5\f è la carta di attacco,
+  4 il numero di carte più alte possedute dal nord (AQJ7\f),
+  1 il numero di carte più alte possedute da sud (6\f).
+  Se si nota, est ha solo due carta superiore al 5\f (ovvero il 9 e 8 di \f).
+\end{itemize}
+
+\paragraph{E se l'attacco fosse la quinta migliore?}
+Stesso discorso che abbiamo fatto con la legge 11 e del 12.
+In questo frangente però il numero di base sarà il 10.
+
+\paragraph{E se non attaccasse ne con la quarta ne con la terza e nemmeno con la quinta migliore?}
+Nulla da fare, saranno altre le considerazioni da dover fare.
+Certo, non si potrà usare la legge 10, 11 o 12.
+
+\paragraph{Quando è meglio non attaccare in questo modo?}
+Sarebbe meglio evitare questa cosa se vi trovate come 5a, 4a o 3a migliore con un numero molto basso.
+Sapere che in mano al dichiarante ci sono 3 carte più alte del 2 non è molto utile per la difesa, o no?
