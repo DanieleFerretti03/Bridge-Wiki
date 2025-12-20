@@ -1,0 +1,118 @@
+\section{Interventi in bicolore}
+
+\paragraph{Di cosa stiamo parlando?}
+Iniziamo con il definire cosa intendiamo con bicolore.
+Una mano bicolore e' una mano con preponderanza in due semi.
+
+Nello specifico, almeno 5 carte in entrambi i semi.
+Vediamo degli esempi:
+
+\begin{enumerate}
+\item \hand{xxxxx,xxxxx,xx,x}
+\item \hand{xxx,xxxxx,xxxxx,}
+\item \hand{xx,xxxxx,x,xxxxx}
+\end{enumerate}
+
+In questo caso specifico, parliamo di intervento in bicolore.
+Ovvero, se siamo la successiva persona a dover licitare dopo
+una dichiarazione avversaria.
+Vediamo una situazione pratica:
+
+\hand{x, xx, AKxxx, AKxxx}
+
+\begin{center}
+\begin{auction}
+  {1S}, {?}
+\end{auction}
+\end{center}
+
+Avendo la seguente mano cosa licitiamo?
+Qualcuno potrebbe suggerire di dire:
+\begin{itemize}
+  \item Contro
+  \item 2\f
+  \item 2\q
+  \item passo
+\end{itemize}
+
+Vediamoli uno per uno e capiamo perche' ci sono delle ciriticita'.
+Il primo comunica esclusivamente che si possiede un'apertura.
+In base agli accordi presi pero' questa potrebbe essere un licita poco corretta.
+Il contro sul maggiore ci farebbe intendere di avere in questo caso almeno 4\C.
+In ogni caso, non dice nulla ne delle fiori, ne delle quadri.
+
+Gli interventi di 2\f e 2\q sono piu' descrittivi ma omettono comunque
+l'altro palo.
+E siccome la sfortuna alle volte puo' essere nera, magari abbiamo proprio
+un incontro sul palo non licitato e nessuno in quello licitato.
+Intendiamoci, magari invece potrebbe esserci l'incontro nel palo licitato.
+Faccio pero' notare che non e' detto questo incontro.
+
+Il passo e' messo li per varie ragioni.
+Qualcuno con quella mano potrebbe decidere o essere obbligato da sistema, a passare.
+Notiamo che questo tra tutti e' proprio l'intervento peggiore. 
+Perche'? Eh bhe, non compete e lascia la strada libera alla licita.
+
+\paragraph{Facciamo due conti}
+Qualcuno potrebbe pensare che questa sezione tratta
+di una situazione molto poco probabile.
+Quando mai si vede quel tipo di mano?
+
+Ebbene, facendo due conti applicando la formula di Bayes.
+Usiamo le seguenti convenzioni:
+\begin{enumerate}
+\item $C$: Evento di trovarci nella situazione di dover usare questa convenzione.
+\item $PO_a$: Che il nostro avversario abbia almeno 12 P.O.
+\item $PO_m$: Che nella nostra mano ci siano almeno 8 P.O.
+\item $Dis$: Che nella nostra mano ci sia una distribuzione almeno 5-5.
+\end{enumerate}
+
+$$P(C) = P(Dis) * \frac{P(PO_a | PO_m) * P(PO_m)}{P(PO_a)}$$
+
+Facendo un po' di sostituzioni che si possono verificare, otteniamo:
+$$P(C) = 21.98\% * 39.5\% = 8.68\% $$
+
+Ovvero, giocando regolarmente dovrebbe capitare
+\textbf{approssimativamente} una volta ogni 11.5 mani.
+
+\paragraph{Dovrei usarla?}
+Per quello che sono i conti di prima,
+avere nel proprio arsenale questa convenzione puo' aiutare molto.
+Dopodiche', esistono altri sistemi che abbiamo discusso prima
+che potrebbero funzionare a trovare un incontro.
+Certo e' che non e' una convenzione "semplice", quindi suggerisco
+di giocarla con una persona dopo un po' di tempo e non a primo acchito.
+
+\paragraph{Come funziona la convenzione nel pratico?}
+
+Riporto di seguito la tabella delle varie combinazioni.
+Provo dopo a spiegare con che metodo io ho memorizzato questa tabella.
+
+\begin{tabular}{|l|lll|}
+\hline
+Apertura & Surlicita & 2NT   & 3\f   \\
+\hline
+1\f      & \C+\p     & \q+\C & \q+\p \\
+1\q      & \C+\p     & \f+\C & \f+\p  \\
+1\C      & \f+\p     & \f+\q & \q+\p \\
+1\p      & \f+\C     & \f+\q & \q+\C \\
+\hline
+\end{tabular}
+
+Nota: La surlicita 1\f-2\f indica una lunga di fiori.
+Pertanto, dove e' indicato surlicita nella licita di 1\f si usa comunque 2\q.
+
+\paragraph{Aiuto per la memorizzazione}
+
+\begin{itemize}
+  \item 2NT: Il pattern dentro questa licita e' che indica sempre i due semi piu' bassi.
+
+  \item Surlicita nei minori: Indica sempre i due semi maggiori.
+  \item Surlicita nei maggiori: Avendo escluso la coppia dei due minori.
+  Ci rimangono le coppie di minore e maggiore.
+  In questo caso, per evitare di dire noi le fiori la surlicita indica la bicolore con fiori e l'altro maggiore.
+  \item 3\f nei maggiori: per il ragionamento di prima, evitando di dire noi le quadri, indichiamo le quadri e l'altro maggiore.
+
+  \item 3\f nei minori: Escludendo i due piu' bassi e i due piu' alti come coppia, ci rimane solo una coppia.
+  Il caso sfortunato vuole che in una di queste situazione anticipiamo il palo delle fiori.
+\end{itemize}

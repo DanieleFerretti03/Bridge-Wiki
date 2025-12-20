@@ -20,7 +20,6 @@ Dentro il capitolo della licita:
 - Legge della simmetria
 - Risposta al compagno
 - Intervento di 1NT
-- Intervento in bicolore
 - Intervento Sbarramento
 - Intervento  Costruttivo
 - Contro
